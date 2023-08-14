@@ -1,0 +1,82 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Nguoi{
+	protected:
+		string hoten;
+		int namsinh;
+	public:
+		void nhap()
+	{
+		cout <<"Nhap ho va ten: ";
+		fflush(stdin);
+		getline(cin, hoten);
+		
+		cout <<"Nhap nam sinh: ";
+		cin>> namsinh;
+    }
+		
+		void xuat()
+	{
+		cout <<"Ho va ten: "<<hoten<<endl
+			 <<"Nam sinh: "<<namsinh<<endl;
+	}		
+};
+
+class Thisinh : public Nguoi{
+	private:
+		int sbd;
+		float dtoan, dly, dhoa;
+	public:
+		void nhap(){
+			Nguoi::nhap();
+			cout <<"Nhap so bao danh: ";
+			cin>>sbd;
+			while(sbd <= 0){
+			    cout<<"nhap lai so bao danh: ";
+			    cin>>sbd;
+		    }
+		    
+			cout <<"Nhap diem toan: ";
+			cin>> dtoan;
+			while(dtoan < 0 || dtoan > 10){
+				cout<<"nhap lai diem toan: ";
+				cin >>dtoan;
+			}
+			
+			cout <<"Nhap diem ly: ";
+			cin>> dly;
+			while (dly < 0 || dly > 10){
+				cout<<"nhap lai diem ly: ";
+				cin>>dly;
+			}
+			
+			cout <<"Nhap diem hoa: ";
+			cin>>dhoa;
+			while (dhoa < 0 || dhoa > 10){
+				cout <<"nhap lai diem hoa: ";
+				cin>> dhoa;
+			}	
+		}
+		
+		void xuat(){
+			Nguoi::xuat();
+			cout <<"So bao danh: "<<sbd<<endl
+				 <<"Diem toan: "<<dtoan<<endl
+				 <<"Diem ly: "<<dly<<endl
+				 <<"Diem hoa: "<<dhoa<<endl
+				 <<"Tong diem 3 mon: "<<this->tong()<<endl;		 
+		}	
+		
+		float tong(){
+			return this->dtoan+this->dly+this->dhoa;
+		}
+};
+
+
+int main(){
+	Thisinh a;
+	a.nhap();
+	a.xuat();
+}
